@@ -5,7 +5,7 @@ on:
 env:
   BUCKET: teststorage1983
   TFSTATE_FILE: S3.tfstate
-  aws_region: ws-west-3
+  aws_region: eu-west-3
 
 jobs:
     destroy_bucket:
