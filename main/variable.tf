@@ -1,7 +1,7 @@
-variable "instance-namex" {
-  type = list(string)
+# variable "instance-namex" {
+#   type = list(string)
 
-}
+# }
 
 # variable "instance-map" {
 #   type = map(any)
