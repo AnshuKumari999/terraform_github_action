@@ -1,4 +1,4 @@
-resource "aws_instance" "ec2_for_each" {
+resource "aws_instance" "firstec2" {
   #  for_each      = var.instance-map //toset(var.instance_name)
    ami           = var.ami_id
   instance_type = "t2.micro"
