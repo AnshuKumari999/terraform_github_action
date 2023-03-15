@@ -6,7 +6,14 @@ module "myec2" {
 #   instance-name = each.value
   #instance_type = "t2.micro"
   #subnet_id     = module.myvpc.subnet_id
-  instance-name = ["abc","xyz"]
+  instance-name = {
+    "a" = {
+      "name" = "abc"
+    },
+    "b" = {
+      "name" = "xyz"
+    }
+  }
 
 }
 
