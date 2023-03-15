@@ -1,4 +1,4 @@
-name: h-deployment
+name: woekflow-deployment
 
 on:
   workflow_dispatch:
@@ -26,6 +26,7 @@ jobs:
           with:
             aws-access-key-id: ${{ secrets.AWSACCESSKEYID }}
             aws-secret-access-key: ${{ secrets.AWSSECRETACCESSKEY }}
+            aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
             aws-region: ${{ env.aws_region }}
 
         - name: terraform init
