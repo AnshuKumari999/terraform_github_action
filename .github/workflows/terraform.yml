@@ -31,13 +31,13 @@ jobs:
 
         - name: terraform init
           run: |
-             main
+            cd main
              terraform init -reconfigure -backend-config="bucket=${{ env.BUCKET }}" -backend-config="key=${{ env.TFSTATE_FILE }}" -backend-config="region=${{ env.aws_region }}"
         - name: terraform plan
           run: |
-            main
+           cd main
             terraform plan
         - name: terraform apply
           run: |
-             main 
+            cd main 
               terraform apply -auto-approve
