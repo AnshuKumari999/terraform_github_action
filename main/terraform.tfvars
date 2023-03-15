@@ -1,4 +1,4 @@
-instance-namex = ["anshu", "pratyank", "kumari", "chauhan", "Harsha", "XYZ"]
+instance-namex = ["anshu", "kumari"]
 
 # instance-map = {
 #   "i1" = {
