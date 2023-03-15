@@ -1,0 +1,36 @@
+name: destroy-workflow
+
+on:
+  workflow_dispatch:
+env:
+  BUCKET: teststorage1983
+  TFSTATE_FILE: S3.tfstate
+  aws_region: ws-west-3
+
+jobs:
+    destroy_bucket:
+      name: destroy
+      runs-on: ubuntu-latest
+      steps:
+        - name: CheckOut
+          uses: actions/checkout@v3
+        - name: set up terraform hasicrop
+          uses: hashicorp/setup-terraform@v1
+
+        - name: configure aws cridentials
+          uses: aws-actions/configure-aws-credentials@v1
+          with:
+            aws-access-key-id: ${{ secrets.AWSACCESSKEYID }}
+            aws-secret-access-key: ${{ secrets.AWSSECRETACCESSKEY }}
+            aws-session-token: ${{ secrets.AWSSESSIONTOKEN }}
+            aws-region: ${{env.aws_region}}
+  
+        - name: terraform init
+          run: |
+            cd main
+            terraform init -reconfigure -backend-config="bucket=${{ env.BUCKET }}" -backend-config="key=${{ env.TFSTATE_FILE }}" -backend-config="region=${{ env.aws_region }}"
+            
+        - name: destroy
+          run: |
+            cd main
+            terraform destroy -auto-approve
