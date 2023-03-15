@@ -1,5 +1,5 @@
 variable "instance-name" {
-  type = string
+  type = list(any)
 
 }
 
@@ -8,6 +8,7 @@ variable "instance-name" {
 # }
 
 variable "ami_id" {
+  type = string
   default = ""
   
 }
