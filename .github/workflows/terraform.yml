@@ -1,8 +1,12 @@
 name : "Terraform-Workflow"
 
 on:
- push:
-  branches: ["main"]
+ workflow_dispatch:
+  inputs:
+   region:
+   description: "Enter your region: "
+   required: true
+   type: string
   
 jobs:
  terraform:
