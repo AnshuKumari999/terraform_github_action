@@ -1,6 +1,6 @@
 module "myec2" {
   source        = "../moduls/ec2"
-  ami_id        = "ami-005f9685cb30f234b"
+  ami_id        = "ami-0d81306eddc614a45"
   for_each =    toset(var.instance-namex)
   # instance-map = each.value
   instance-name = each.value
@@ -12,6 +12,5 @@ module "myec2" {
 
 module "aws_s3_bucket" {
   source = "../moduls/s3"
-  buckname = "githubaction123"
-  
+  buckname = "github_action_1" 
 }
