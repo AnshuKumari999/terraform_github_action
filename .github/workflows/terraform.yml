@@ -1,46 +1,42 @@
-name : "Terraform_Workflow"
+name: h-deployment
 
 on:
- workflow_dispatch:
-  inputs:
-   region:
-   description: "Enter your region: "
-   required: true
-   type: string
-  
+  workflow_dispatch:
+     inputs : 
+      region :
+        description: "Enter your region : "
+        required: true  
+        type: string    
+
+env:
+  BUCKET: github123
+  TFSTATE_FILE: S3.tfstate
+  aws_region: ${{ github.event.inputs.region }}
+
 jobs:
- terraform:
-  name: "Terraform"
-  runs-on: window-latest
-  env:
-   AWS_ACCESS_KEY_ID: ${{secrets.AWSACCESSKEYID}}
-   AWS_SECRET_ACCESS_ID: ${{secrets.AWSSECRETACCESSKEY}}
-defaults:
- run:
-   working-directory: main
-steps:
-    - uses: action/checkout@v2
-    - uses: action/setup-terraform@v2
-    - name: checkout
-    
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v1
-      with:
-       terraform_version: 1.0.1
-       terraform_wrapper: false
-     
-    - name: Terraform Format
-      id: fmt
-      run: terraform fmt -check
-    - name: Terraform Init
-      id: init
-      run: terraform init
-    - name: Terraform Plan
-      id: plan
-      run: terraform plan
-    - name: Terraform Apply
-      run: terraform apply -auto-approve
-    
-     
-  
-  
+  s3bucket :
+      runs-on : ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+        - name: Terraform hashicorp setup
+          uses: hashicorp/setup-terraform@v2
+
+        - name: Configure AWS Credentials
+          uses: aws-actions/configure-aws-credentials@v1
+          with:
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            aws-region: ${{ env.aws_region }}
+
+        - name: terraform init
+          run: |
+             module
+             terraform init -reconfigure -backend-config="bucket=${{ env.BUCKET }}" -backend-config="key=${{ env.TFSTATE_FILE }}" -backend-config="region=${{ env.aws_region }}"
+        - name: terraform plan
+          run: |
+            module
+            terraform plan
+        - name: terraform apply
+          run: |
+             module 
+              terraform apply -auto-approve
