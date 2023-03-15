@@ -27,6 +27,6 @@ module "mygw" {
 
 module "aws_s3_bucket" {
   source = "../moduls/s3"
-  buckname = "githubaction1"
+  buckname = "githubaction123"
   
 }
