@@ -1,5 +1,5 @@
 variable "instance-name" {
-  type = list(any)
+  type = map(any)
 
 }
 
