@@ -5,7 +5,7 @@ on:
 env:
   VPC: gitanshu
   TFSTATE_FILE: VPC.tfstate
-  aws_region: ${{ github.event.inputs.region }}
+  aws_region: us-east-1
 
 jobs:
     destroy_vpc:
