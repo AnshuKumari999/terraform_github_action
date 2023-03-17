@@ -9,12 +9,12 @@ on:
         type: string    
 
 env:
-  BUCKET: github123
-  TFSTATE_FILE: S3.tfstate
+  VPC: gitanshu
+  TFSTATE_FILE: VPC.tfstate
   aws_region: ${{ github.event.inputs.region }}
 
 jobs:
-  s3bucket :
+  vpc :
       runs-on : ubuntu-latest
       steps:
         - uses: actions/checkout@v3
