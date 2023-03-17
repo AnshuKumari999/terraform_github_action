@@ -3,12 +3,12 @@ name: destroy-workflow
 on:
   workflow_dispatch:
 env:
-  BUCKET: teststorage1983
-  TFSTATE_FILE: S3.tfstate
-  aws_region: eu-west-3
+  VPC: gitanshu
+  TFSTATE_FILE: VPC.tfstate
+  aws_region: ${{ github.event.inputs.region }}
 
 jobs:
-    destroy_bucket:
+    destroy_vpc:
       name: destroy
       runs-on: ubuntu-latest
       steps:
